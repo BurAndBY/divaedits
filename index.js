@@ -5,6 +5,7 @@
 var express = require('express');
 var xssClean = require('xss-clean');
 const dynamoDB = require('@cyclic.sh/dynamodb');
+const db = dynamoDB('pink-faithful-sea-lionCyclicDB');
 const path = require('path');
 const rateLimit = require('express-rate-limit');
 const bodyParser = require('body-parser');
