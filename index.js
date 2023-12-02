@@ -79,9 +79,18 @@ app.post('/api/create', async (req, res) => {
 
 app.get('/api/db', async (req, res) => {
     let dysongs = db.collection('songs')
+    let songList = await dysongs.list();
+    let output = {"songs": {}};
 
-    res.status(200).send(await dysongs.list());
+    for(let i = 0; i < songList.results.length; i++) {
+        let songKey = songList.results[i].key;
+        let songDetails = await dysongs.get(songKey);
+        output.songs[songDetails.props.song] = songDetails.props;
+    }
+
+    res.status(200).send(output);
 });
+
 app.listen(port, function (err) {
     if (err) console.log(err);
     console.log("Server listening on PORT", port);
