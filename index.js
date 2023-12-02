@@ -10,7 +10,6 @@ const path = require('path');
 const rateLimit = require('express-rate-limit');
 const bodyParser = require('body-parser');
 var fs = require('fs');
-const sha256 = require('sha256');
 
 // Express app, XSS cleanup, body parser and port
 var app = express();
@@ -65,7 +64,7 @@ app.post('/api/create', async (req, res) => {
 
     
 
-    var itemname = sha256(song + 'by' + charter);   
+    var itemname = song + 'by' + charter;   
 
     // Specify the parameters for the put method
     var params = {
