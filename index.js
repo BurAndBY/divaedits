@@ -31,10 +31,6 @@ app.get('/', (req, res) => {
     res.send('o/ this is made for sharing Project Diva F / F 2nd edits. I don\'t know how newer consoles host songs nor do I own one.')
 });
 
-app.get('/api/db.json', (req, res) => {
-    res.sendFile(__dirname + '/db.json');
-});
-
 app.post('/api/create', async (req, res) => {
     
     let dysongs = db.collection('songs')
@@ -81,6 +77,11 @@ app.post('/api/create', async (req, res) => {
     }
 });
 
+app.get('/api/db', (req, res) => {
+    let dysongs = db.collection('songs')
+
+    res.status(200).send(await dysongs.get()));
+});
 app.listen(port, function (err) {
     if (err) console.log(err);
     console.log("Server listening on PORT", port);
