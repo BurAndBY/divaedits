@@ -6,14 +6,17 @@ var express = require('express');
 var xssClean = require('xss-clean');
 const dynamoDB = require('@cyclic.sh/dynamodb');
 const db = dynamoDB('pink-faithful-sea-lionCyclicDB');
+const cors = require('cors');
 const path = require('path');
 const rateLimit = require('express-rate-limit');
 const bodyParser = require('body-parser');
 var fs = require('fs');
 
-// Express app, XSS cleanup, body parser and port
+// Express app, XSS cleanup, body parser, CORS and port
 var app = express();
 app.use(xssClean());
+app.use('/api/create', bodyParser.json());
+app.use(cors());
 const port = 3000;
 
 //Rate-limit settings
@@ -22,9 +25,6 @@ const limiter = rateLimit({
     max: 5 
 });
 app.use('/api/create', limiter);
-
-//Parse creation to json
-app.use('/api/create', bodyParser.json());
 
 app.get('/', (req, res) => {
     //TODO: any frontend
