@@ -80,7 +80,7 @@ app.post('/api/create', async (req, res) => {
 app.get('/api/db', async (req, res) => {
     let dysongs = db.collection('songs')
 
-    res.status(200).send(await dysongs.get());
+    res.status(200).send(await dysongs.list());
 });
 app.listen(port, function (err) {
     if (err) console.log(err);
