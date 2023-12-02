@@ -75,7 +75,7 @@ app.post('/api/create', async (req, res) => {
 
     try {
         await dysongs.set(itemname, newSong);
-        res.status(200).send('Song created successfully');
+        res.status(200).send(await dysongs.get(itemname));
     } catch (error) {
         console.error(error);
         res.status(500).send('Error while creating song' + error + '. Contact @burandby on discord');
