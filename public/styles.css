@@ -1,0 +1,43 @@
+@import url('https://fonts.cdnfonts.com/css/mochiy-pop-one');
+
+
+body {
+    font-family: 'Mochiy Pop One', sans-serif;
+}
+
+/* Header styling */
+header {
+    background-color: #006064;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Main content styling */
+main {
+    margin: 15px;
+    padding: 10px;
+    background-color: #e0f7fa;
+}
+
+/* Footer styling */
+footer {
+    background-color: #006064;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+button
+{
+    font-size:20px;
+    padding-left: 2em;
+    padding-right: 2em;
+    background-color:#006064;
+    color:white;
+    border:none;
+    border-radius:5px;
+}

@@ -6,17 +6,14 @@ var express = require('express');
 var xssClean = require('xss-clean');
 const dynamoDB = require('@cyclic.sh/dynamodb');
 const db = dynamoDB('pink-faithful-sea-lionCyclicDB');
-const cors = require('cors');
 const path = require('path');
 const rateLimit = require('express-rate-limit');
 const bodyParser = require('body-parser');
 var fs = require('fs');
 
-// Express app, XSS cleanup, body parser, CORS and port
+// Express app, XSS cleanup, body parser and port
 var app = express();
 app.use(xssClean());
-app.use('/api/create', bodyParser.json());
-app.use(cors());
 const port = 3000;
 
 //Rate-limit settings
@@ -26,10 +23,10 @@ const limiter = rateLimit({
 });
 app.use('/api/create', limiter);
 
-app.get('/', (req, res) => {
-    //TODO: any frontend
-    res.send('o/ this is made for sharing Project Diva F / F 2nd edits. I don\'t know how newer consoles host songs nor do I own one.')
-});
+//Parse creation to json and serve the frontend
+app.use('/api/create', bodyParser.json());
+app.use(express.static('public'));
+
 
 app.post('/api/create', async (req, res) => {
     
